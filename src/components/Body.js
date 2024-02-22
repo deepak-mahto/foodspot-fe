@@ -8,7 +8,7 @@ import useFetch from "../common/useFetch";
 
 const BodyComponent = () => {
   const isOnline = useOnline();
-  const url = "https://restaurants-api-v940.onrender.com/api/restaurants/";
+  const url = "https://eatsy-be.onrender.com/api/restaurants/";
   const { response, isPending, error } = useFetch(url);
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurantsArray, setFilteredRestaurants] = useState([]);
