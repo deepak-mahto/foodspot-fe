@@ -21,6 +21,7 @@ const SearchComponent = (props) => {
             filterRestaurants(searchText);
           }}
           className="search-text"
+          placeholder="Search Restaurant"
         ></input>
         <button onClick={(e) => filterRestaurants(searchText)}>Search</button>
       </div>

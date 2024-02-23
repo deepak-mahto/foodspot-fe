@@ -46,7 +46,7 @@ const RestaurantMenu = () => {
           </div>
         </div>
         <div className="restaurant-menu">
-          <h3>Recommended({restaurantMenuItems.length})</h3>
+          <h3>Recommended ({restaurantMenuItems.length})</h3>
           {restaurantMenuItems.map((menu) => (
             <RestaurantMenuItemCard
               key={menu.id}

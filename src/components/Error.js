@@ -6,12 +6,14 @@ const Error = () => {
   console.log("error", err);
   return (
     <>
-      <h1>Oops!!</h1>
-      <h2>Something went wrong!!!</h2>
-      <h2>Please check your URL!!</h2>
-      <h2>
-        {err.status}-{err.error.message}
-      </h2>
+      <div className="error">
+        <h1>Oops!!</h1>
+        <h2>Something went wrong!!!</h2>
+        <h2>Please check your URL!!</h2>
+        <h2>
+          {err.status}-{err.error.message}
+        </h2>
+      </div>
     </>
   );
 };

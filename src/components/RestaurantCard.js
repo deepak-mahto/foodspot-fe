@@ -17,8 +17,9 @@ const RestaurantCard = ({ res_details }) => {
         alt="rest-pic"
       ></img>
       <h3>{name}</h3>
-      <h4>{cuisines}</h4>
-
+      <div className="cuisines">
+        <h4>{cuisines}</h4>
+      </div>
       <div className="res-info">
         <h4>{avgRating}</h4>
         <h4>{deliveryTime}</h4>
