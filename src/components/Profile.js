@@ -8,8 +8,7 @@ const Profile = (props) => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-    }, 1000);
+    const timer = setInterval(() => {}, 1000);
     fetchUsers();
     return () => {
       clearInterval(timer);
@@ -30,6 +29,7 @@ const Profile = (props) => {
   return (
     <>
       <h1>Profile Component</h1>
+      <h1>{users}</h1>
       <h2>{name}</h2>
       <h2>Count:{count}</h2>
       <h2>Count1: {count1}</h2>
