@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from "react";
 
 const FooterComponent = () => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -8,10 +8,12 @@ const FooterComponent = () => {
   }, []);
 
   return (
-    <div className="footer">
-      <h1>Copyright &copy; {currentYear}</h1>
-      <h2>Links</h2>
-    </div>
+    <Fragment>
+      <div className="footer">
+        <h1>Copyright &copy; {currentYear}</h1>
+        <h2>Links</h2>
+      </div>
+    </Fragment>
   );
 };
 

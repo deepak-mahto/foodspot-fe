@@ -14,7 +14,7 @@ const RestaurantMenuItemCard = (props) => {
     <div className="menu-item">
       <div className="item-details">
         <h4>{name}</h4>
-        <span> Cost : {price/100}</span>
+        <span> Cost : {price / 100}</span>
         <p> {description}</p>
       </div>
       <img src={`${RESTAURANT_IMG_URL}${imageId}`} alt="menu item"></img>
