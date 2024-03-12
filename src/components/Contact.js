@@ -1,10 +1,17 @@
+import React from "react";
+
 const Contact = () => {
   return (
-    <>
-      <div className="contact-component">
-        <h1>Contact Page</h1>
-      </div>
-    </>
+    <div className="contact-container">
+      <h2>Contact Us</h2>
+      <p>Have questions or feedback? Reach out to us!</p>
+      <form className="contact-form">
+        <input type="text" placeholder="Your Name" />
+        <input type="email" placeholder="Your Email" />
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
   );
 };
 
