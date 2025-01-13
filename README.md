@@ -1,8 +1,8 @@
-# Eatsy
+# restaurants-fe
 
 ![Project Image](./img/eatsy.png)
 
-Eatsy is a web application built on the MERN (MongoDB, Express.js, React.js, Node.js) stack.
+foodSpot is a web application built on the MERN (MongoDB, Express.js, React.js, Node.js) stack.
 
 ## Features
 
