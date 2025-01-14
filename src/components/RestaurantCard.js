@@ -11,19 +11,30 @@ const RestaurantCard = ({ res_details }) => {
   } = res_details;
 
   return (
-    <div className="restaurant-card">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <img
         src={`${RESTAURANT_IMG_URL}${cloudinaryImageId}`}
-        alt="rest-pic"
-      ></img>
-      <h3>{name}</h3>
-      <div className="cuisines">
-        <h4>{cuisines}</h4>
-      </div>
-      <div className="res-info">
-        <h4>{avgRating}</h4>
-        <h4>{deliveryTime}</h4>
-        <h4> {costForTwo}</h4>
+        alt={name}
+        className="w-full h-48 object-cover"
+      />
+
+      <div className="p-4">
+        <h3 className="text-xl font-semibold mb-2">{name}</h3>
+
+        <div className="text-gray-600 mb-3">
+          <h4 className="text-sm">{cuisines.join(", ")}</h4>
+        </div>
+
+        <div className="flex justify-between items-center text-sm text-gray-700">
+          <div className="flex items-center space-x-1">
+            <span className="text-yellow-500">⭐</span>
+            <span>{avgRating}</span>
+          </div>
+
+          <span>{deliveryTime} mins</span>
+
+          <span>{costForTwo}</span>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-import SearchComponent from "./Search";
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -22,52 +21,39 @@ const BodyComponent = () => {
     }
   }, [isPending, response]);
 
-  function filteredRestaurants(restaurants) {
-    setFilteredRestaurants(restaurants);
-  }
-
-  function filterTopRatedRestaurants() {
-    let topRatedRestaurants = filteredRestaurantsArray.filter(
-      (restaurant) => restaurant.avgRating > 4
-    );
-
-    setFilteredRestaurants(topRatedRestaurants);
-  }
-
   if (!isOnline) {
-    return <h1>Please check your Internet Connection</h1>;
+    return (
+      <div className="flex justify-center items-center h-screen text-2xl font-semibold text-red-600">
+        Please check your Internet Connection
+      </div>
+    );
   }
 
   return (
-    <>
-      <div className="filter-search-bar">
-        <SearchComponent
-          restaurants={allRestaurants}
-          filteredRestaurants={filteredRestaurants}
-        />
-        <button className="top-rated" onClick={filterTopRatedRestaurants}>
-          Top Rated Restaurants
-        </button>
-      </div>
-
-      {error && <div>{error}</div>}
+    <div className="container mx-auto px-4 py-6 mt-20">
+      {error && (
+        <div className="text-center text-red-600 font-semibold mb-6">
+          {error}
+        </div>
+      )}
 
       {isPending ? (
         <Shimmer />
       ) : (
-        <div className="res-container">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredRestaurantsArray.map((restaurant) => (
             <Link
               key={restaurant._id}
               to={"/restaurant/" + restaurant._id}
               state={restaurant}
+              className="hover:scale-105 transition-transform duration-300"
             >
-              <RestaurantCard key={restaurant._id} res_details={restaurant} />
+              <RestaurantCard res_details={restaurant} />
             </Link>
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
 
