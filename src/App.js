@@ -1,10 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import HeaderComponent from "./components/Header";
 import FooterComponent from "./components/Footer";
 import { Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./common/appStore";
+import HeaderComponent from "./components/Header";
 
 function App() {
   const [hideFooter, setHideFooter] = useState(false);

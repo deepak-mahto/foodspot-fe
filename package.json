@@ -41,5 +41,8 @@
   "main": "index.js",
   "keywords": [],
   "author": "Deepak Kumar",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
 }
