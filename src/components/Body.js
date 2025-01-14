@@ -4,7 +4,6 @@ import Shimmer from "./Shimmer";
 import { dummyRestaurants } from "../data";
 
 const BodyComponent = () => {
-  // eslint-disable-next-line
   const [restaurants, setRestaurants] = useState(dummyRestaurants);
   const [filteredRestaurants, setFilteredRestaurants] =
     useState(dummyRestaurants);
