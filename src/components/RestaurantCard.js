@@ -1,22 +1,10 @@
-import { RESTAURANT_IMG_URL } from "../common/restaurant_img_url";
-
 const RestaurantCard = ({ res_details }) => {
-  const {
-    name,
-    cuisines,
-    avgRating,
-    deliveryTime,
-    costForTwo,
-    cloudinaryImageId,
-  } = res_details;
+  const { name, cuisines, avgRating, deliveryTime, costForTwo, imageUrl } =
+    res_details;
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <img
-        src={`${RESTAURANT_IMG_URL}${cloudinaryImageId}`}
-        alt={name}
-        className="w-full h-48 object-cover"
-      />
+      <img src={imageUrl} alt={name} className="w-full h-48 object-cover" />
 
       <div className="p-4">
         <h3 className="text-xl font-semibold mb-2">{name}</h3>
@@ -31,7 +19,7 @@ const RestaurantCard = ({ res_details }) => {
             <span>{avgRating}</span>
           </div>
 
-          <span>{deliveryTime} mins</span>
+          <span>{deliveryTime}</span>
 
           <span>{costForTwo}</span>
         </div>

@@ -1,19 +1,15 @@
 # restaurants-fe
 
-![Project Image](./img/eatsy.png)
+![Project Image](img/foodSpot.png)
 
-foodSpot is a web application built on the MERN (MongoDB, Express.js, React.js, Node.js) stack.
+foodSpot is a web application (frontend) built on the React and TaiwindCSS
 
 ## Features
 
 - **Restaurant Listings:** Browse through a curated list of restaurants fetched from the server.
-- **Search Functionality:** Utilize the search bar and search button to find specific restaurants based on keywords.
 - **Top Rated Restaurants:** Quickly access top-rated restaurants with the click of a button.
-- **Cart Functionality:** Conveniently manage your orders using the cart functionality integrated into the navigation bar.
 
 ## Technologies Used
 
-- **Frontend:** React.js
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB
-- **API Testing:** Thunder Client
+- React.js
+- Tailwind CSS

@@ -10,16 +10,16 @@ const SignUp = () => {
 
   const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validateForm(formData);
+
     if (Object.keys(errors).length === 0) {
-      console.log("Form data:", formData);
       alert("Sign up successful!");
       setFormData({ name: "", email: "", password: "" });
       setErrors({});

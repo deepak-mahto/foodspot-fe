@@ -2,19 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const HeaderComponent = ({ restaurants, filteredRestaurants }) => {
+const HeaderComponent = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const filterRestaurants = (searchText) => {
-    const filtered = restaurants.filter((restaurant) =>
-      restaurant.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-    filteredRestaurants(filtered);
   };
 
   return (
@@ -80,7 +73,6 @@ const HeaderComponent = ({ restaurants, filteredRestaurants }) => {
             <div className="flex items-center bg-white rounded-lg shadow-md overflow-hidden w-full max-w-md">
               <input
                 type="text"
-                onChange={(e) => filterRestaurants(e.target.value)}
                 className="w-full px-4 py-2 focus:outline-none"
                 placeholder="Search Restaurant"
               />

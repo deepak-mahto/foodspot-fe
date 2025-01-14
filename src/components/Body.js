@@ -1,56 +1,46 @@
+import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
-import useOnline from "../common/useOnline";
-import useFetch from "../common/useFetch";
+import { dummyRestaurants } from "../data";
 
 const BodyComponent = () => {
-  const isOnline = useOnline();
-  const url = "https://eatsy-be.onrender.com/api/restaurants";
-  const { response, isPending, error } = useFetch(url);
   // eslint-disable-next-line
-  const [allRestaurants, setAllRestaurants] = useState([]);
-  const [filteredRestaurantsArray, setFilteredRestaurants] = useState([]);
+  const [restaurants, setRestaurants] = useState(dummyRestaurants);
+  const [filteredRestaurants, setFilteredRestaurants] =
+    useState(dummyRestaurants);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (!isPending) {
-      if (response) {
-        setAllRestaurants(response);
-        setFilteredRestaurants(response);
-      }
-    }
-  }, [isPending, response]);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
-  if (!isOnline) {
-    return (
-      <div className="flex justify-center items-center h-screen text-2xl font-semibold text-red-600">
-        Please check your Internet Connection
-      </div>
+  const filterTopRatedRestaurants = () => {
+    const topRated = restaurants.filter(
+      (restaurant) => restaurant.avgRating > 4
     );
-  }
+    setFilteredRestaurants(topRated);
+  };
 
   return (
     <div className="container mx-auto px-4 py-6 mt-20">
-      {error && (
-        <div className="text-center text-red-600 font-semibold mb-6">
-          {error}
-        </div>
-      )}
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+        <button
+          onClick={filterTopRatedRestaurants}
+          className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600 transition duration-300"
+        >
+          Top Rated Restaurants
+        </button>
+      </div>
 
-      {isPending ? (
+      {isLoading ? (
         <Shimmer />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {filteredRestaurantsArray.map((restaurant) => (
-            <Link
-              key={restaurant._id}
-              to={"/restaurant/" + restaurant._id}
-              state={restaurant}
-              className="hover:scale-105 transition-transform duration-300"
-            >
-              <RestaurantCard res_details={restaurant} />
-            </Link>
+          {filteredRestaurants.map((restaurant) => (
+            <RestaurantCard key={restaurant._id} res_details={restaurant} />
           ))}
         </div>
       )}
