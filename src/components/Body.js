@@ -9,6 +9,7 @@ const BodyComponent = () => {
   const isOnline = useOnline();
   const url = "https://eatsy-be.onrender.com/api/restaurants";
   const { response, isPending, error } = useFetch(url);
+  // eslint-disable-next-line
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurantsArray, setFilteredRestaurants] = useState([]);
 

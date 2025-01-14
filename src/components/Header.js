@@ -1,21 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { clearCart } from "../common/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const HeaderComponent = ({ restaurants, filteredRestaurants }) => {
-  const [buttonText, setButtonText] = useState("Login");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const dispatch = useDispatch();
-  const cartItems = useSelector((store) => store.cart.items);
-
-  const updateLoginLogoutText = () => {
-    setButtonText((prevText) => (prevText === "Login" ? "Logout" : "Login"));
-  };
-
-  const handleClearCart = () => {
-    dispatch(clearCart());
-  };
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -58,83 +47,62 @@ const HeaderComponent = ({ restaurants, filteredRestaurants }) => {
               ></path>
             </svg>
           </button>
+          <ul className="hidden md:flex space-x-6 items-center">
+            <li>
+              <Link
+                to="/"
+                className="text-gray-700 hover:text-orange-500 transition duration-300"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className="text-gray-700 hover:text-orange-500 transition duration-300"
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className="text-gray-700 hover:text-orange-500 transition duration-300"
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
         </div>
 
-        <ul className="hidden md:flex space-x-6 items-center">
-          <li>
-            <Link
-              to="/"
-              className="text-gray-700 hover:text-orange-500 transition duration-300"
-            >
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/about"
-              className="text-gray-700 hover:text-orange-500 transition duration-300"
-            >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact"
-              className="text-gray-700 hover:text-orange-500 transition duration-300"
-            >
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/instamart"
-              className="text-gray-700 hover:text-orange-500 transition duration-300"
-            >
-              Instamart
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/cart"
-              className="text-gray-700 hover:text-orange-500 transition duration-300 flex items-center"
-            >
-              Cart
-              {cartItems.length > 0 && (
-                <span className="ml-1 bg-orange-500 text-white px-2 py-1 rounded-full text-sm">
-                  {cartItems.length}
-                </span>
-              )}
-            </Link>
-          </li>
-          <button
-            onClick={handleClearCart}
-            className="text-gray-700 hover:text-orange-500 transition duration-300"
-          >
-            Clear Cart
-          </button>
-        </ul>
-
-        <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 w-full md:w-auto mt-4 md:mt-0">
-          <div className="flex items-center bg-white rounded-lg shadow-md overflow-hidden w-full max-w-md">
-            <input
-              type="text"
-              onChange={(e) => filterRestaurants(e.target.value)}
-              className="w-full px-4 py-2 focus:outline-none"
-              placeholder="Search Restaurant"
-            />
+        <div className="flex gap-2">
+          <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 w-full md:w-auto mt-4 md:mt-0">
+            <div className="flex items-center bg-white rounded-lg shadow-md overflow-hidden w-full max-w-md">
+              <input
+                type="text"
+                onChange={(e) => filterRestaurants(e.target.value)}
+                className="w-full px-4 py-2 focus:outline-none"
+                placeholder="Search Restaurant"
+              />
+            </div>
           </div>
+          <button
+            onClick={() => navigate("/login")}
+            className="hidden md:block bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300"
+          >
+            LogIn
+          </button>
+          <button
+            onClick={() => navigate("/signup")}
+            className="hidden md:block bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300"
+          >
+            SignUp
+          </button>
         </div>
-
-        <button
-          onClick={updateLoginLogoutText}
-          className="hidden md:block bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300"
-        >
-          {buttonText}
-        </button>
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
+        <div className="md:hidden bg-white shadow-lg ">
           <ul className="flex flex-col space-y-4 p-4">
             <li>
               <Link
@@ -163,49 +131,21 @@ const HeaderComponent = ({ restaurants, filteredRestaurants }) => {
                 Contact
               </Link>
             </li>
-            <li>
-              <Link
-                to="/instamart"
-                className="text-gray-700 hover:text-orange-500 transition duration-300"
-                onClick={toggleMobileMenu}
-              >
-                Instamart
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/cart"
-                className="text-gray-700 hover:text-orange-500 transition duration-300 flex items-center"
-                onClick={toggleMobileMenu}
-              >
-                Cart
-                {cartItems.length > 0 && (
-                  <span className="ml-1 bg-orange-500 text-white px-2 py-1 rounded-full text-sm">
-                    {cartItems.length}
-                  </span>
-                )}
-              </Link>
-            </li>
+
             <li>
               <button
-                onClick={() => {
-                  handleClearCart();
-                  toggleMobileMenu();
-                }}
-                className="text-gray-700 hover:text-orange-500 transition duration-300"
+                onClick={() => navigate("/login")}
+                className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300 w-full"
               >
-                Clear Cart
+                LogIn
               </button>
             </li>
             <li>
               <button
-                onClick={() => {
-                  updateLoginLogoutText();
-                  toggleMobileMenu();
-                }}
+                onClick={() => navigate("/signup")}
                 className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300 w-full"
               >
-                {buttonText}
+                SignUp
               </button>
             </li>
           </ul>

@@ -1,19 +1,17 @@
-import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./components/About";
-import Error from "./components/Error";
 import Contact from "./components/Contact";
 import BodyComponent from "./components/Body";
 import RestaurantDetails from "./components/RestaurantDetails";
 import Profile from "./components/Profile";
 import ProfileChild from "./components/ProfileChild";
 import RestaurantReview from "./components/RestaurantReview";
-
-const Instamart = lazy(() => import("./components/Instamart"));
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -21,7 +19,6 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -55,13 +52,14 @@ const appRouter = createBrowserRouter([
         path: "/restaurant/:resId/review",
         element: <RestaurantReview />,
       },
+
       {
-        path: "/instamart",
-        element: (
-          <Suspense fallback={<h1>Loading.......</h1>}>
-            <Instamart />
-          </Suspense>
-        ),
+        path: "/signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const Contact = () => {
+const SignUp = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -19,8 +20,8 @@ const Contact = () => {
     const errors = validateForm(formData);
     if (Object.keys(errors).length === 0) {
       console.log("Form data:", formData);
-      alert("Message sent successfully!");
-      setFormData({ name: "", email: "", message: "" });
+      alert("Sign up successful!");
+      setFormData({ name: "", email: "", password: "" });
       setErrors({});
     } else {
       setErrors(errors);
@@ -37,8 +38,10 @@ const Contact = () => {
     } else if (!isValidEmail(formData.email)) {
       errors.email = "Invalid email format";
     }
-    if (!formData.message.trim()) {
-      errors.message = "Message is required";
+    if (!formData.password.trim()) {
+      errors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
     }
     return errors;
   };
@@ -49,16 +52,13 @@ const Contact = () => {
 
   return (
     <div className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 mt-20">
-      <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">Contact Us</h2>
-        <p className="text-gray-600 mb-6">
-          Have questions or feedback? Reach out to us!
-        </p>
+      <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+          Sign Up
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-gray-700 font-medium mb-2">
-              Your Name
-            </label>
+            <label className="block text-gray-700 font-medium mb-2">Name</label>
             <input
               type="text"
               name="name"
@@ -76,7 +76,7 @@ const Contact = () => {
 
           <div>
             <label className="block text-gray-700 font-medium mb-2">
-              Your Email
+              Email
             </label>
             <input
               type="email"
@@ -95,21 +95,21 @@ const Contact = () => {
 
           <div>
             <label className="block text-gray-700 font-medium mb-2">
-              Your Message
+              Password
             </label>
-            <textarea
-              name="message"
-              value={formData.message}
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
               onChange={handleChange}
-              placeholder="Enter your message"
-              rows="5"
+              placeholder="Enter your password"
               className={`w-full px-4 py-2 border ${
-                errors.message ? "border-red-500" : "border-gray-300"
+                errors.password ? "border-red-500" : "border-gray-300"
               } rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500`}
-            ></textarea>
-            {errors.message && (
+            />
+            {errors.password && (
               <span className="text-red-500 text-sm mt-1">
-                {errors.message}
+                {errors.password}
               </span>
             )}
           </div>
@@ -118,12 +118,18 @@ const Contact = () => {
             type="submit"
             className="w-full bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition duration-300"
           >
-            Send Message
+            Sign Up
           </button>
         </form>
+        <p className="text-center mt-6 text-gray-600">
+          Already have an account?{" "}
+          <Link to="/login" className="text-orange-500 hover:underline">
+            Log In
+          </Link>
+        </p>
       </div>
     </div>
   );
 };
 
-export default Contact;
+export default SignUp;
