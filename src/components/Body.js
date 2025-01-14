@@ -4,7 +4,6 @@ import Shimmer from "./Shimmer";
 import { dummyRestaurants } from "../data";
 
 const BodyComponent = () => {
-  const [restaurants, setRestaurants] = useState(dummyRestaurants);
   const [filteredRestaurants, setFilteredRestaurants] =
     useState(dummyRestaurants);
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +16,7 @@ const BodyComponent = () => {
   }, []);
 
   const filterTopRatedRestaurants = () => {
-    const topRated = restaurants.filter(
+    const topRated = dummyRestaurants.filter(
       (restaurant) => restaurant.avgRating > 4
     );
     setFilteredRestaurants(topRated);
