@@ -24,7 +24,7 @@ const BodyComponent = () => {
 
   return (
     <div className="container mx-auto px-4 py-6 mt-20">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0 mt-10">
         <button
           onClick={filterTopRatedRestaurants}
           className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-orange-600 transition duration-300"

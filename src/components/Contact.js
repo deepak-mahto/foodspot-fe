@@ -49,7 +49,7 @@ const Contact = () => {
 
   return (
     <div className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 mt-20">
-      <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+      <div className="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg mt-10">
         <h2 className="text-3xl font-bold text-gray-800 mb-4">Contact Us</h2>
         <p className="text-gray-600 mb-6">
           Have questions or feedback? Reach out to us!

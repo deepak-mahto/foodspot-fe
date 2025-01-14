@@ -126,7 +126,10 @@ const HeaderComponent = () => {
 
             <li>
               <button
-                onClick={() => navigate("/login")}
+                onClick={() => {
+                  navigate("/login");
+                  setIsMobileMenuOpen(!isMobileMenuOpen);
+                }}
                 className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300 w-full"
               >
                 LogIn
@@ -134,7 +137,10 @@ const HeaderComponent = () => {
             </li>
             <li>
               <button
-                onClick={() => navigate("/signup")}
+                onClick={() => {
+                  navigate("/signup");
+                  setIsMobileMenuOpen(!isMobileMenuOpen);
+                }}
                 className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300 w-full"
               >
                 SignUp
