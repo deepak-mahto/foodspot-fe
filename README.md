@@ -1,7 +1,5 @@
 # restaurants-fe
 
-![Project Image](img/foodSpot.png)
-
 foodSpot is a web application (frontend) built on the React and TaiwindCSS
 
 ## Features
