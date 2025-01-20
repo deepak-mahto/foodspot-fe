@@ -10,11 +10,9 @@ export const useFetch = (url) => {
       try {
         const response = await fetch(url);
         const json = await response.json();
-        console.log("response", json);
         setResponse(json);
         setIsPending(false);
       } catch (error) {
-        console.log("error", error);
         setError(`${error} Could not Fetch Data `);
         setIsPending(false);
       }

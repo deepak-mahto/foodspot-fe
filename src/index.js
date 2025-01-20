@@ -3,15 +3,10 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import About from "./components/About";
-import Contact from "./components/Contact";
-import BodyComponent from "./components/Body";
-import RestaurantDetails from "./components/RestaurantDetails";
-import Profile from "./components/Profile";
-import ProfileChild from "./components/ProfileChild";
-import RestaurantReview from "./components/RestaurantReview";
-import SignUp from "./components/SignUp";
-import Login from "./components/Login";
+import Home from "./pages/Home";
+import Dashboard from "./pages/Dashboard";
+import Signup from "./pages/SignUp";
+import Login from "./pages/Login";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -22,40 +17,15 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <BodyComponent />,
+        element: <Home />,
       },
       {
-        path: "/about",
-        element: <About />,
-        children: [
-          {
-            path: "profile",
-            element: <Profile />,
-            children: [
-              {
-                path: "profileChild",
-                element: <ProfileChild />,
-              },
-            ],
-          },
-        ],
+        path: "/dashboard",
+        element: <Dashboard />,
       },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/restaurant/:resId",
-        element: <RestaurantDetails />,
-      },
-      {
-        path: "/restaurant/:resId/review",
-        element: <RestaurantReview />,
-      },
-
       {
         path: "/signup",
-        element: <SignUp />,
+        element: <Signup />,
       },
       {
         path: "/login",
