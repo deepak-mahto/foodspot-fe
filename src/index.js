@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Signup from "./pages/SignUp";
 import Login from "./pages/Login";
+import AllRestaurants from "./pages/AllRestaurants";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -30,6 +31,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/all-restaurants",
+        element: <AllRestaurants />,
       },
     ],
   },

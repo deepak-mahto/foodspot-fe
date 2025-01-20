@@ -1,15 +1,16 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +28,7 @@ const Login = () => {
         })
         .then((response) => {
           localStorage.setItem("token", `JWT ${response.data.token}`);
-          navigate("/dashboard");
+          login();
         });
       setErrors({});
     } else {
@@ -53,7 +54,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 mt-20 h-[79vh]">
+    <div className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 mt-20 h-[79vh]">
       <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg mt-10">
         <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
           Log In

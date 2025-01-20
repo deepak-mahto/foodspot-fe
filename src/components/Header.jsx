@@ -1,33 +1,23 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const HeaderComponent = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const handleAuth = () => {
-    if (localStorage.getItem("token")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  };
-  useEffect(() => {
-    handleAuth();
-  }, []);
-
   return (
     <nav className="bg-white shadow-md fixed w-full top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
         <div className="flex justify-between items-center w-full md:w-auto">
           <Link to="/" className="flex items-center justify-center">
-            <h1 className="font-bold text-orange-400 text-lg">foodSpot</h1>
+            <h1 className="font-bold text-orange-500 text-3xl">foodSpot</h1>
           </Link>
           <button
             onClick={toggleMobileMenu}
@@ -52,7 +42,7 @@ const HeaderComponent = () => {
 
         <div className="flex gap-2">
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 w-full md:w-auto mt-4 md:mt-0"></div>
-          {!isLoggedIn ? (
+          {!isAuthenticated ? (
             <div
               className="flex gap-2
             "
@@ -74,9 +64,7 @@ const HeaderComponent = () => {
             <div>
               <button
                 onClick={() => {
-                  localStorage.removeItem("token");
-                  handleAuth();
-                  navigate("/");
+                  logout();
                 }}
                 className="hidden md:block bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300"
               >
@@ -90,7 +78,7 @@ const HeaderComponent = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg ">
           <ul className="flex flex-col space-y-4 p-4">
-            {!isLoggedIn ? (
+            {!isAuthenticated ? (
               <div className="flex flex-col gap-2">
                 <li>
                   <button
@@ -120,10 +108,8 @@ const HeaderComponent = () => {
                 <li>
                   <button
                     onClick={() => {
-                      localStorage.removeItem("token");
-                      handleAuth();
+                      logout();
                       setIsMobileMenuOpen(!isMobileMenuOpen);
-                      navigate("/");
                     }}
                     className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300 w-full"
                   >

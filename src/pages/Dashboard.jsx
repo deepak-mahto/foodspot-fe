@@ -1,10 +1,7 @@
-import { useEffect, useState } from "react";
-import RestaurantCard from "../components/RestaurantCard";
+import { useState } from "react";
 import axios from "axios";
 
 const Dashboard = () => {
-  const [restaurants, setRestaurants] = useState([]);
-
   const [formData, setFormData] = useState({
     name: "",
     cuisines: "",
@@ -13,19 +10,6 @@ const Dashboard = () => {
     costForTwo: "",
     imageUrl: "",
   });
-
-  const getRestaurants = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/api/restaurants");
-      setRestaurants(response.data.restaurants);
-    } catch (error) {
-      console.log("Error while fetching data");
-    }
-  };
-
-  useEffect(() => {
-    getRestaurants();
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -59,11 +43,10 @@ const Dashboard = () => {
       costForTwo: "",
       imageUrl: "",
     });
-    getRestaurants();
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 mt-20">
+    <div className="container mx-auto px-4 py-6 mt-20 h-[79vh]">
       <h1 className="text-3xl font-bold mb-6 mt-14">Dashboard</h1>
 
       <form
@@ -161,12 +144,6 @@ const Dashboard = () => {
           Create Restaurant
         </button>
       </form>
-      <h1 className="text-center text-3xl font-bold mb-6 mt-14">Restaurants</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {restaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant._id} res_details={restaurant} />
-        ))}
-      </div>
     </div>
   );
 };
