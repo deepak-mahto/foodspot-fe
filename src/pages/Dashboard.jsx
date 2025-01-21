@@ -52,7 +52,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6 mt-20 h-[79vh]">
+    <div className="container mx-auto px-4 py-6 mt-20 h-screen">
       <h1 className="text-3xl font-bold mb-6 mt-14">Dashboard</h1>
 
       <form
