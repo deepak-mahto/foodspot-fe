@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 const AllRestaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -18,11 +20,26 @@ const AllRestaurants = () => {
   const getRestaurants = async () => {
     const response = await axios.get("http://localhost:8000/api/restaurants");
     setRestaurants(response.data.restaurants);
+    setFilteredRestaurants(response.data.restaurants);
   };
 
   useEffect(() => {
     getRestaurants();
   }, []);
+
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+
+    if (query === "") {
+      setFilteredRestaurants(restaurants);
+    } else {
+      const filtered = filteredRestaurants.filter((restaurant) =>
+        restaurant.name.toLowerCase().includes(query)
+      );
+      setFilteredRestaurants(filtered);
+    }
+  };
 
   return (
     <div className="container mx-auto px-4 py-6 mt-20">
@@ -39,12 +56,21 @@ const AllRestaurants = () => {
           Explore all the amazing restaurants in town.
         </p>
       </div>
+      <div className="mb-8 flex justify-center">
+        <input
+          type="text"
+          placeholder="Search Restaurant"
+          value={searchQuery}
+          onChange={handleSearch}
+          className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+        />
+      </div>
 
       {isLoading ? (
         <Shimmer number={restaurants.length} />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {restaurants.map((restaurant) => (
+          {filteredRestaurants.map((restaurant) => (
             <RestaurantCard key={restaurant._id} res_details={restaurant} />
           ))}
         </div>

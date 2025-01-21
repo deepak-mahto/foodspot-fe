@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Dashboard = () => {
   const [formData, setFormData] = useState({
@@ -42,6 +43,11 @@ const Dashboard = () => {
       deliveryTime: "",
       costForTwo: "",
       imageUrl: "",
+    });
+
+    toast.success("Restaurant created successfully", {
+      position: "top-right",
+      autoClose: 2000,
     });
   };
 

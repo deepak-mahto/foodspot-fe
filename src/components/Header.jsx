@@ -61,7 +61,15 @@ const HeaderComponent = () => {
               </button>
             </div>
           ) : (
-            <div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+                className="hidden md:block bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 transition duration-300"
+              >
+                Dashboard
+              </button>
               <button
                 onClick={() => {
                   logout();

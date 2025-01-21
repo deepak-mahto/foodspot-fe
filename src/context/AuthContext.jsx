@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = () => {
     setIsAuthenticated(true);
-    navigate("/dashboard");
+    navigate("/all-restaurants");
   };
 
   const login = () => {
