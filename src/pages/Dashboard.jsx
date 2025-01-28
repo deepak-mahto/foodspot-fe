@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { BACKEND_URL } from "../config";
 
 const Dashboard = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const Dashboard = () => {
     e.preventDefault();
 
     await axios.post(
-      "http://localhost:8000/api/restaurant",
+      `${BACKEND_URL}/api/restaurant`,
       {
         name: formData.name,
         cuisines: formData.cuisines,

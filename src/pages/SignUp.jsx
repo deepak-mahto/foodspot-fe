@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+import { BACKEND_URL } from "../config";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const SignUp = () => {
 
     if (Object.keys(errors).length === 0) {
       axios
-        .post("http://localhost:8000/api/register", {
+        .post(`${BACKEND_URL}/api/register`, {
           name: formData.name,
           email: formData.email,
           password: formData.password,

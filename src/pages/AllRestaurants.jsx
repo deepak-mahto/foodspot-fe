@@ -3,6 +3,7 @@ import axios from "axios";
 import RestaurantCard from "../components/RestaurantCard";
 import Shimmer from "../components/Shimmer";
 import { Link } from "react-router-dom";
+import { BACKEND_URL } from "../config";
 
 const AllRestaurants = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -18,7 +19,7 @@ const AllRestaurants = () => {
   }, []);
 
   const getRestaurants = async () => {
-    const response = await axios.get("http://localhost:8000/api/restaurants");
+    const response = await axios.get(`${BACKEND_URL}/api/restaurants`);
     setRestaurants(response.data.restaurants);
     setFilteredRestaurants(response.data.restaurants);
   };

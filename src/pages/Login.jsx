@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { BACKEND_URL } from "../config";
 
 const Login = () => {
   const { login } = useAuth();
@@ -22,7 +23,7 @@ const Login = () => {
     const errors = validateForm(formData);
     if (Object.keys(errors).length === 0) {
       axios
-        .post("http://localhost:8000/api/login", {
+        .post(`${BACKEND_URL}/api/login`, {
           email: formData.email,
           password: formData.password,
         })
