@@ -5,7 +5,7 @@ foodSpot is a web application built on the React, TaiwindCSS, MongoDB, Nodejs, E
 ## Features
 
 - **Authentication:** Authenticate by signup and login and have logout functionality.
-- **Restaurant Creation Dashboard:** A new restaurant can be created by filling the details of the restaurants.
+- **Restaurant Creation Dashboard:** A new restaurant can be created by filling the details of the restaurant.
 - **Restaurant Listings:** Browse through a curated list of restaurants fetched from the server.
 - **Search Functionality:** Search restaurants according to your needs.
 
